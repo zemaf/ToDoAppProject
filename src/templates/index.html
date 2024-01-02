@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% block title %}
+    Mes tâches |
+{% endblock title %}
+{% block content %}
+    <h1>Hello, this is my first ToDo App using Django!</h1>
+
+    <!-- Formulaire d'ajout d'une tâche -->
+    <form method="post">
+    {% csrf_token %}
+        {{task_form.title}}
+        <input type="text" value="Ajouter">
+        <!-- autre méthode: <button type="button">Ajouter</button> -->
+    </form>
+
+    <!-- Liste des tâches -->
+    <ol>
+        {% for task in tasks %}
+            <hr>
+        <!-- on accède à la vue update_task depuis le lien href -->
+        <li>
+            <!-- si une tâche est réalisée on barre son titre avec la balise <s><s/> -->
+            {% if task.completed == True %}
+                <s> {{task.title}} </s>
+            {% else %}
+                {{task.title}}
+            {% endif %}
+            | <a href="{% url 'update_task' task.id %}">Modifier tâche</a>
+            | <a href="{% url 'delete_task' task.id %}">Supprimer tâche</a>
+        </li>
+            <hr>
+        {% endfor %}
+    </ol>
+{% endblock content %}

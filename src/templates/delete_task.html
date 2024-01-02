@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %}
+  Supprimer une tâche |
+{% endblock %}
+{% block content%}
+  <p>Veux-tu supprimer la tâche: <strong>{{task}}</strong>?</p>
+  <!-- on peut annuler et revenir à la page index  -->
+  <p><a href="{% url 'index' %}">Annuler</a></p>
+  <!-- on ajoutre un formulaire avec un input pour confirmer la suppression -->
+  <form method="post">
+    {% csrf_token %}
+    <input type="submit" value="Confirmer">
+  </form>
+{% endblock %}
