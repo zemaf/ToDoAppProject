@@ -9,7 +9,7 @@
     <form method="post">
     {% csrf_token %}
         {{task_form.title}}
-        <input type="text" value="Ajouter">
+        <input type="submit" value="Ajouter">
         <!-- autre méthode: <button type="button">Ajouter</button> -->
     </form>
 
